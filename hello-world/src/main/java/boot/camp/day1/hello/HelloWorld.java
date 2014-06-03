@@ -10,6 +10,7 @@ public class HelloWorld {
     	System.out.print("Podaj sciezke do pliku CVS: ");
     	fp=filePathReader.next();
     	csvParser parseFile=new csvParser(fp);
+    	
     	parseFile.preprocessCSVFile();
     	filePathReader.close();
     }
