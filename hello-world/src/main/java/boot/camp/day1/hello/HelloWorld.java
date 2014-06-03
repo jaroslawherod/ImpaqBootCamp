@@ -1,15 +1,23 @@
 package boot.camp.day1.hello;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class HelloWorld {
+public class HelloWorld
+{
 
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello World!");
-
-
-    }
-
+	public static void main(String[] args) throws IOException
+	{
+		Path patch = Paths.get("src//test//resources//sample.csv");
+		BufferedReader BR = Files.newBufferedReader(patch, StandardCharsets.UTF_8);
+		
+		Parser person = new Parser(BR);
+		
+		
+		
+	}
 }
