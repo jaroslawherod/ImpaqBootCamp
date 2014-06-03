@@ -12,57 +12,48 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CSVParser {
-	
-	List<ArrayList<String>> lines;
-	
-	public void loadFromStream(InputStream stream, String separator) {
+
+	public List<Person> parse(InputStream stream, String separator)
+			throws CSVParserException {
 		InputStreamReader streamReader = new InputStreamReader(stream);
 		BufferedReader reader = new BufferedReader(streamReader);
-		lines = new ArrayList<ArrayList<String>>();
+		List<Person> parsedPersons = new ArrayList<Person>();
 		String line = null;
-		
+
 		try {
-			while((line = reader.readLine()) != null) {
+			while ((line = reader.readLine()) != null) {
 				String[] values = line.split(separator);
-				ArrayList<String> newLine = new ArrayList<String>(
-						Arrays.asList(values));
-				lines.add(newLine);
+				Person person = new Person(values[0], values[1], values[2]);
+				parsedPersons.add(person);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new CSVParserException("Stream is closed", e);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			throw new CSVParserException("Invalid file structure.");
 		}
-		
-	}
-	
-	public String toString() {
-		StringBuffer buffer = new StringBuffer();
-		for(List<String> line : lines) {
-			for(String value : line) {
-				buffer.append(value);
-				buffer.append(" ");
-			}
-			buffer.append("\n");
-		}
-		return buffer.toString();
+
+		return parsedPersons;
+
 	}
 
 	public static void main(String[] args) {
 		File file = new File("test.csv");
 		InputStream stream = null;
 		CSVParser parser = new CSVParser();
-		
+
 		try {
 			stream = new FileInputStream(file);
-			parser.loadFromStream(stream, ",");
 			System.out.println("Oddzielone przecinkiem:");
-			System.out.println(parser.toString());
-			
+			System.out.println(parser.parse(stream, ","));
+
 			stream = new FileInputStream(file);
-			parser.loadFromStream(stream, ";");
 			System.out.println("Oddzielone średnikiem:");
-			System.out.println(parser.toString());
+			System.out.println(parser.parse(stream, ";"));
+
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CSVParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
