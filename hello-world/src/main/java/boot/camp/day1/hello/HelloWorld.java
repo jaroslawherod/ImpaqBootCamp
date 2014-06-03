@@ -17,7 +17,5 @@ public class HelloWorld
 		
 		Parser person = new Parser(BR);
 		
-		
-		
 	}
 }
