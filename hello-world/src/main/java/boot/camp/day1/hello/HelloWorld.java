@@ -1,23 +1,31 @@
 package boot.camp.day1.hello;
 
-import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.Reader;
+import java.util.List;
 
 public class HelloWorld
 {
 
 	public static void main(String[] args) throws IOException
 	{
-		Path patch = Paths.get("src//test//resources//sample.csv");
-		BufferedReader BR = Files.newBufferedReader(patch, StandardCharsets.UTF_8);
+		String patch = "src//test//resources//sample.csv";
+		Reader reader = new FileReader(new File(patch));
 		
-		Parser person = new Parser(BR);
+		Parser person = new Parser();
+		List<Container> l = person.parse(reader);
 		
-		BR.close();
+		reader.close();
+		
+		/*
+		wyswietlanie list (test sprawdzenia zawarosci listy)
+		for (Container x : l) { System.out.println("Id: " + x.getId());
+		System.out.println("Name: " + x.getName());
+		System.out.println("Address: " + x.getAddress());
+		System.out.println(); }
+		*/
 		
 	}
 }

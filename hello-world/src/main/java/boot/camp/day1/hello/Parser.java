@@ -1,26 +1,25 @@
 package boot.camp.day1.hello;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Parser
 {
-	List<Container> list = new ArrayList<Container>();
-
-	Parser(BufferedReader BR) throws IOException
+	
+	public List<Container> parse(Reader reader) throws IOException
 	{
-		this.Parse(BR);
-
-	}
-
-	private void Parse(BufferedReader BR) throws IOException
-	{
+		List<Container> personslist = new ArrayList<Container>();
+		
+		BufferedReader BR = new BufferedReader( reader );
+		
 		String line = "";
 		Container person;
 
-		while ((line = BR.readLine()) != null)
+		while ( (line = BR.readLine()) != null )
 		{
 			person = new Container();
 			String[] tmp = line.split(",");
@@ -29,15 +28,11 @@ public class Parser
 			person.setId(tmp[1].trim());
 			person.setAddress(tmp[2].trim());			
 
-			list.add(person);
+			personslist.add(person);
 		}
 
-		/*
-		 for (Container x : list) { System.out.println("Id: " + x.getId());
-		 System.out.println("Name: " + x.getName());
-		 System.out.println("Address: " + x.getAddress());
-		 System.out.println(); }
-		 */
+		return personslist;
+		
 
 	}
 
