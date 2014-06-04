@@ -1,14 +1,12 @@
 package boot.camp.csv;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +17,8 @@ public class CSVWriterTest {
 
 	List<Person> persons = null;
 	ByteArrayOutputStream stream = null;
-	CSVWriter writer = new CSVWriter();
+	CSVWriter<Person> writer = new CSVWriter<Person>(new  PersonConverter());
+	CSVConverter<Person> converter = new PersonConverter();
 	
 
 	

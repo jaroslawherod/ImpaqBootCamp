@@ -6,22 +6,31 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.List;
 
-public class CSVWriter {
+public class CSVWriter<T> {
+	
+	CSVConverter<T> converter;
 
-	public void write(OutputStream stream, List<Person> persons,
+	public CSVWriter(CSVConverter<T> converter) {
+		super();
+		this.converter = converter;
+	}
+
+	public void write(OutputStream stream, List<T> elements,
 			String separator) throws CSVWriterException {
 		OutputStreamWriter streamWriter = new OutputStreamWriter(stream);
 		BufferedWriter writer = new BufferedWriter(streamWriter);
 		StringBuilder builder = new StringBuilder();
-		for (Person p : persons) {
+		for (T element : elements) {
 			if(builder.length() > 0) {
 				builder.append("\n");
 			}
-			builder.append(p.name);
-			builder.append(separator);
-			builder.append(p.pesel);
-			builder.append(separator);
-			builder.append(p.adress);
+			List<String> values = converter.convert(element);
+			for(int i = 0; i < values.size(); i++) {
+				if(i != 0) {
+					builder.append(separator);
+				}
+				builder.append(values.get(i));				
+			}
 		}
 		try {
 			writer.write(builder.toString());
@@ -30,6 +39,29 @@ public class CSVWriter {
 			throw new CSVWriterException(e);
 		}
 
+	}
+	
+	public void write(OutputStream stream, T element,
+			String separator) throws CSVWriterException {
+		OutputStreamWriter streamWriter = new OutputStreamWriter(stream);
+		BufferedWriter writer = new BufferedWriter(streamWriter);
+		StringBuilder builder = new StringBuilder();
+		
+		List<String> values = converter.convert(element);
+		for(int i = 0; i < values.size(); i++) {
+			if(i != 0) {
+				builder.append(separator);
+			}
+			builder.append(values.get(i));				
+		}
+		
+		try {
+			writer.write(builder.toString());
+			writer.flush();
+		} catch (IOException e) {
+			throw new CSVWriterException(e);
+		}
+		
 	}
 
 }

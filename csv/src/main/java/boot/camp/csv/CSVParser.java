@@ -11,20 +11,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CSVParser {
+public class CSVParser<T> {
+	
+	CSVConverter<T> converter;
+	
+	
+	public CSVParser(CSVConverter<T> converter) {
+		super();
+		this.converter = converter;
+	}
 
-	public List<Person> parse(InputStream stream, String separator)
-			throws CSVParserException {
+	public List<T> parse(InputStream stream, String separator)
+			throws CSVParserException, CSVConverterException {
 		InputStreamReader streamReader = new InputStreamReader(stream);
 		BufferedReader reader = new BufferedReader(streamReader);
-		List<Person> parsedPersons = new ArrayList<Person>();
+		List<T> parsed = new ArrayList<T>();
 		String line = null;
 
 		try {
 			while ((line = reader.readLine()) != null) {
 				String[] values = line.split(separator);
-				Person person = new Person(values[0], values[1], values[2]);
-				parsedPersons.add(person);
+				parsed.add(converter.convertBack(Arrays.asList(values)));
 			}
 		} catch (IOException e) {
 			throw new CSVParserException("Stream is closed", e);
@@ -32,14 +39,15 @@ public class CSVParser {
 			throw new CSVParserException("Invalid file structure.");
 		}
 
-		return parsedPersons;
+		return parsed;
 
 	}
 
 	public static void main(String[] args) {
 		File file = new File("test.csv");
 		InputStream stream = null;
-		CSVParser parser = new CSVParser();
+		CSVConverter<Person> converter = new PersonConverter();
+		CSVParser<Person> parser = new CSVParser<Person>(converter);
 
 		try {
 			stream = new FileInputStream(file);
@@ -54,6 +62,9 @@ public class CSVParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (CSVParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CSVConverterException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {

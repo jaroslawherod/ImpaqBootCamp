@@ -23,7 +23,8 @@
 	<modules>
 		<module>hello-world</module>
     <module>csv</module>
-  </modules>
+    <module>csv-servlet</module>
+	</modules>
 
 	<dependencies>
 		<dependency>

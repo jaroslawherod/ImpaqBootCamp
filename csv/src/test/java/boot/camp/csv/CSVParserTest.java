@@ -1,10 +1,8 @@
 package boot.camp.csv;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -17,7 +15,8 @@ public class CSVParserTest {
 
 	InputStream fileInputStream = null;
 	List<Person> expected = new ArrayList<Person>();
-	CSVParser parser = new CSVParser();
+	CSVParser<Person> parser = new CSVParser<Person>(new PersonConverter());
+	PersonConverter converter = new PersonConverter();
 
 	@Before
 	public void initialize() {
@@ -26,7 +25,7 @@ public class CSVParserTest {
 	}
 
 	@Test
-	public void testCorrectFile() throws CSVParserException {
+	public void testCorrectFile() throws CSVParserException, CSVConverterException {
 		List<Person> actual = parser.parse(fileInputStream, ",");
 		List<Person> expected = new ArrayList<Person>();
 		expected.add(new Person("Jarosław Heród", "800805123456",
@@ -40,19 +39,13 @@ public class CSVParserTest {
 
 	}
 
-	@Test
-	public void testWrongSeparator() {
-		try {
-			parser.parse(fileInputStream, ";");
-			fail();
-		} catch (CSVParserException e) {
-			assertEquals("Invalid file structure.", e.getMessage());
-		}
-
+	@Test(expected=CSVConverterException.class)
+	public void testWrongSeparator() throws CSVConverterException, CSVParserException {
+		parser.parse(fileInputStream, ";");
 	}
 
 	@Test(expected=CSVParserException.class)
-	public void testClosedStream() throws CSVParserException, IOException {
+	public void testClosedStream() throws CSVParserException, IOException, CSVConverterException {
 		fileInputStream.close();
 		parser.parse(fileInputStream, ";");
 
