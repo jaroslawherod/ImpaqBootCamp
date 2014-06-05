@@ -2,7 +2,9 @@ package day3;
 
 import static org.junit.Assert.*;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ import org.junit.Test;
 public class CSVWriterTest {
 	
 	@Test
-	public void shouldProperlyReadDataFromList() throws CSVException, IOException {
+	public void shouldProperlyReadDataFromListAndPrintItToStream() throws CSVException, IOException {
 		List<Person> personsList = new LinkedList<Person>();
 		Person newPerson=new Person("qwe asd","asd asd","zxc zxc");
 		Person newPerson2=new Person("qwe2","asd2","zxc2");
@@ -23,5 +25,19 @@ public class CSVWriterTest {
 		CSVWriter csvWriter = new CSVWriter();
 		os=csvWriter.writePersonsToStream(System.out,personsList);
 		assertThat(os,CoreMatchers.equalTo("qwe asd,asd asd,zxc zxc\r\nqwe2,asd2,zxc2\r\n"));		
+	}	
+	@Test
+	
+	public void shouldProperlyReadListFromCSVParserAndWriteItToStream() throws CSVException, IOException {
+		CSVParser parser=new CSVParser();
+		InputStream fp= new FileInputStream("C:/praktyki.csv");
+		List<Person> personsList = parser.preprocessCSVFile(fp);
+		String os;
+		
+		CSVWriter csvWriter = new CSVWriter();
+		os=csvWriter.writePersonsToStream(System.out,personsList);
+		assertThat(os,CoreMatchers.equalTo("Jaroslaw Herod,800805123456, ul. Bura 15 60-222 Poznan\r\n"
+				+"Jan kowalski,851205123456, ul. Nijaka 15 01-222 Warszawa\r\n"
+				+"Jakub Daze,8141231231412, ul. Dziwna 14 02-132 Poznan\r\n"));		
 	}	
 }
