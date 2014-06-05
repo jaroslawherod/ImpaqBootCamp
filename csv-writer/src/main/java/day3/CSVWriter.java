@@ -1,12 +1,8 @@
 package day3;
 
 import java.util.List;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-
-
-
 
 
 public class CSVWriter {
@@ -21,7 +17,7 @@ public class CSVWriter {
 		String output="";
 		StringBuilder sb = new StringBuilder();
 		String separator=",";
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		
 		
 		for(int i=0; i<personsList.size(); i++){
 			readPerson=personsList.get(i);
@@ -30,7 +26,6 @@ public class CSVWriter {
 			sb.append(System.getProperty("line.separator"));
 			output=sb.toString();	
 		}
-		baos.write(output.getBytes());
 		stream.write(output.getBytes());
 		return output;		
 	}
