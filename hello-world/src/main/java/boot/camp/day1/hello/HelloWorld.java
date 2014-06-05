@@ -15,7 +15,7 @@ public class HelloWorld {
 	
 	try {
 	    patch = "src//test//resources//sample.csv";
-	    reader = new FileReader( new File(patch, "UTF-8") );
+	    reader = new FileReader( new File(patch) );
 
 	    Parser person = new Parser();
 	    List<Container> l = person.parse(reader);
@@ -33,6 +33,9 @@ public class HelloWorld {
 		reader.close();
 	}
 
+	
+	
+	
 	/*
 	 * wyswietlanie list (test sprawdzenia zawarosci listy) 
 	 * for (Container x : l) { System.out.println("Id: " + x.getId());
