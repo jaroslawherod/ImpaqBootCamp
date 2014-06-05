@@ -15,6 +15,22 @@ public class Person {
 		this.adress = adresString;
 	}
 	
+	public Person() {
+	}
+	
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPesel(String pesel) {
+		this.pesel = pesel;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+
 	public String getName() {
 		return name;
 	}

@@ -3,6 +3,7 @@ package boot.camp.csv;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -13,23 +14,25 @@ import org.junit.Test;
 
 public class CSVParserTest {
 
-	InputStream fileInputStream = null;
+	InputStream inputStream = null;
 	List<Person> expected = new ArrayList<Person>();
 	CSVParser<Person> parser = new CSVParser<Person>(new PersonConverter());
 	PersonConverter converter = new PersonConverter();
+	byte[] bytes = null; 
 
 	@Before
 	public void initialize() {
-		ClassLoader loader = this.getClass().getClassLoader();
-		fileInputStream = loader.getResourceAsStream("test.csv");
+		String text = "Jaroslaw Herod,800805123456,ul. Bura 15 60-222 Poznan\nJan kowalski,851205123456,ul. Nijaka 15 01-222 Warszawa";
+		bytes = text.getBytes();
+		inputStream = new ByteArrayInputStream(bytes);
 	}
 
 	@Test
-	public void testCorrectFile() throws CSVParserException, CSVConverterException {
-		List<Person> actual = parser.parse(fileInputStream, ",");
+	public void testCorrectStream() throws CSVParserException, CSVConverterException {
+		List<Person> actual = parser.parse(inputStream, ",");
 		List<Person> expected = new ArrayList<Person>();
-		expected.add(new Person("Jarosław Heród", "800805123456",
-				"ul. Bura 15 60-222 Poznań"));
+		expected.add(new Person("Jaroslaw Herod", "800805123456",
+				"ul. Bura 15 60-222 Poznan"));
 		expected.add(new Person("Jan kowalski", "851205123456",
 				"ul. Nijaka 15 01-222 Warszawa"));
 		assertEquals(expected.size(), actual.size());
@@ -41,13 +44,13 @@ public class CSVParserTest {
 
 	@Test(expected=CSVConverterException.class)
 	public void testWrongSeparator() throws CSVConverterException, CSVParserException {
-		parser.parse(fileInputStream, ";");
+		parser.parse(inputStream, ";");
 	}
 
-	@Test(expected=CSVParserException.class)
+	@Test(expected=CSVConverterException.class)
 	public void testClosedStream() throws CSVParserException, IOException, CSVConverterException {
-		fileInputStream.close();
-		parser.parse(fileInputStream, ";");
+		inputStream.close();
+		parser.parse(inputStream, ";");
 
 	}
 

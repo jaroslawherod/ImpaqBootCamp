@@ -26,17 +26,17 @@ public class CSVWriterTest {
 	public void initialize() {
 		stream = new ByteArrayOutputStream();
 		persons = new ArrayList<Person>();
-		persons.add(new Person("Jarosław Heród", "800805123456",
-				"ul. Bura 15 60-222 Poznań"));
+		persons.add(new Person("Jaroslaw Herod", "800805123456",
+				"ul. Bura 15 60-222 Poznan"));
 		persons.add(new Person("Jan kowalski", "851205123456",
 				"ul. Nijaka 15 01-222 Warszawa"));
 	}
 	
 	@Test
 	public void writeTest() {
-		String expected = "Jarosław Heród,800805123456,ul. Bura 15 60-222 Poznań\nJan kowalski,851205123456,ul. Nijaka 15 01-222 Warszawa";
+		String expected = "Jaroslaw Herod,800805123456,ul. Bura 15 60-222 Poznan\nJan kowalski,851205123456,ul. Nijaka 15 01-222 Warszawa";
 		try {
-			writer.write(stream, persons, ",");
+			writer.write(stream, persons, ",", false);
 			try {
 				stream.close();
 				String actual = stream.toString("UTF-8");
@@ -60,7 +60,7 @@ public class CSVWriterTest {
 		try {
 			outputStream = new FileOutputStream(file);
 			outputStream.close();
-			writer.write(outputStream, persons, ",");
+			writer.write(outputStream, persons, ",", false);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

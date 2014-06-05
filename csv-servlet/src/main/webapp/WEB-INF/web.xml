@@ -3,5 +3,13 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+	<servlet>
+		<servlet-name>CSVServlet</servlet-name>
+		<display-name>CSV Servlet App</display-name>
+		<servlet-class>boot.camp.csvservlet.controller.CSVServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CSVServlet</servlet-name>
+		<url-pattern>/persons</url-pattern>
+	</servlet-mapping>
 </web-app>

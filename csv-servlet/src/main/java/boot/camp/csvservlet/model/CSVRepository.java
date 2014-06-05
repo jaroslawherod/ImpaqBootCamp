@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
@@ -25,22 +26,27 @@ public class CSVRepository {
 	File file = null;
 	String separator = ",";
 	
-	public CSVRepository(String filename) {
-		file = new File("data.csv");
+	public CSVRepository() {
+		String filename = System.getProperty("user.home") + "\\repository.csv";
+		file = new File(filename);
+		System.out.println(file.getAbsolutePath());
+		System.out.println(file.getAbsolutePath());
 		CSVConverter<Person> converter = new PersonConverter();
 		parser = new CSVParser<Person>(converter);
 		writer = new CSVWriter<Person>(converter);
 	}
 	
-	public List<Person> getPeople() throws CSVParserException, FileNotFoundException, CSVConverterException {
+	public List<Person> getPeople() throws CSVParserException, CSVConverterException, IOException {
 		InputStream stream = new FileInputStream(file);
-		return parser.parse(stream, separator);
+		List<Person> people = parser.parse(stream, separator);
+		stream.close();
+		return people;
 		
 	}
 	
-	public void savePerson(Person person) throws FileNotFoundException, CSVWriterException {
-		OutputStream stream = new FileOutputStream(file);
-		writer.write(stream, person, separator);
-		
+	public void savePerson(Person person) throws CSVWriterException, IOException {
+		OutputStream stream = new FileOutputStream(file, true);
+		writer.write(stream, person, separator, true);
+		stream.close();		
 	}
 }

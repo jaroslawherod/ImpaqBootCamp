@@ -16,12 +16,12 @@ public class CSVWriter<T> {
 	}
 
 	public void write(OutputStream stream, List<T> elements,
-			String separator) throws CSVWriterException {
+			String separator, boolean append) throws CSVWriterException {
 		OutputStreamWriter streamWriter = new OutputStreamWriter(stream);
 		BufferedWriter writer = new BufferedWriter(streamWriter);
 		StringBuilder builder = new StringBuilder();
 		for (T element : elements) {
-			if(builder.length() > 0) {
+			if(builder.length() > 0 || append) {
 				builder.append("\n");
 			}
 			List<String> values = converter.convert(element);
@@ -42,12 +42,16 @@ public class CSVWriter<T> {
 	}
 	
 	public void write(OutputStream stream, T element,
-			String separator) throws CSVWriterException {
+			String separator, boolean append) throws CSVWriterException {
 		OutputStreamWriter streamWriter = new OutputStreamWriter(stream);
 		BufferedWriter writer = new BufferedWriter(streamWriter);
 		StringBuilder builder = new StringBuilder();
 		
 		List<String> values = converter.convert(element);
+		if(append) {
+			builder.append("\n");
+		}
+		
 		for(int i = 0; i < values.size(); i++) {
 			if(i != 0) {
 				builder.append(separator);
