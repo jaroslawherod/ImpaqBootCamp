@@ -24,7 +24,7 @@ public LinkedList<Person> preprocessCSVFile(InputStream fp) throws CSVException,
 		while ((line=br.readLine())!=null){
 			person=line.split(",");
 			newPerson=new Person(person[0],person[1],person[2]);
-			personalData.push(newPerson);		
+			personalData.addLast(newPerson);		
 		}
 	return personalData;
 }
