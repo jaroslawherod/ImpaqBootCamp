@@ -1,4 +1,4 @@
-package boot.camp.day1.hello;
+package day3;
 
 import static org.junit.Assert.*;
 import java.io.ByteArrayInputStream;
