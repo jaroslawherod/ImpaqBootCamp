@@ -23,10 +23,6 @@ public class HelloWorld {
     	InputStream fileStream=new FileInputStream(fp);
     	CSVParser csvFile=new CSVParser();
     	personalData=csvFile.preprocessCSVFile(fileStream);
-    	for (Person s : personalData) { 
-    		s.printPerson();
-    		System.out.println("");
-    	}
     	filePathReader.close();
     	csvWriter.writePersonsToStream(fileOutputStream,personalData);
     }   	
