@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   
-  <artifactId>csv-writer</artifactId>
+  <artifactId>CSVWriter</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <dependencies>
