@@ -3,6 +3,13 @@ package com.web.json;
 
 public class Person {
 	
+	private String id;
+	private String fullname;
+	private String address;
+	
+	Person(){
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -27,10 +34,5 @@ public class Person {
 		this.address = address;
 	}
 
-	private String id;
-	private String fullname;
-	private String address;
-	
-	Person(){
-	}
+
 }
