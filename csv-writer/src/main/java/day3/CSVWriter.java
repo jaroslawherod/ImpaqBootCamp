@@ -26,7 +26,6 @@ public class CSVWriter {
 			sb.append(System.getProperty("line.separator"));
 			output=sb.toString();	
 		}
-		stream.write(output.getBytes());
-				
+		stream.write(output.getBytes());				
 	}
 }
