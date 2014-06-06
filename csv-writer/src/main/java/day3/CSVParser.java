@@ -15,7 +15,7 @@ public class CSVParser {
 	}
 
 
-public LinkedList<Person> preprocessCSVFile(InputStream fp) throws CSVException, IOException{
+	public LinkedList<Person> preprocessCSVFile(InputStream fp) throws CSVException, IOException{
 	String line="";
 	String[] person;
 	Person newPerson;
@@ -27,7 +27,5 @@ public LinkedList<Person> preprocessCSVFile(InputStream fp) throws CSVException,
 			personalData.addLast(newPerson);		
 		}
 	return personalData;
-}
-	
-
+	}
 }
