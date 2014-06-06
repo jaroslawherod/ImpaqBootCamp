@@ -23,6 +23,7 @@
 <modules>
 <module>hello-world</module>
     <module>maven-writer</module>
+    <module>war</module>
   </modules>
 
 <dependencies>
