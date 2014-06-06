@@ -17,12 +17,14 @@ public class CSVParser {
 
 
 	public List<Person> preprocessCSVFile(InputStream fp) throws CSVException, IOException{
+	if (fp.available()==0) throw new CSVException("Brak strumienia lub strumień pusty");
 	String line="";
 	String[] person;
 	Person newPerson;
 	LinkedList<Person> personalData = new LinkedList<Person>();
 	BufferedReader br = new BufferedReader(new InputStreamReader(fp));
 		while ((line=br.readLine())!=null){
+			if (!line.matches("[\\w|[^+]]+,[\\w|[^+]]+,[\\w|[^+]]+")) throw new CSVException("Błędny strumień wejściowy");
 			person=line.split(",");
 			newPerson=new Person(person[0],person[1],person[2]);
 			personalData.addLast(newPerson);		

@@ -22,9 +22,9 @@
 
 	<modules>
 		<module>hello-world</module>
-		<module>CSVWriter</module>
     	<module>CSVWeb</module>
-    </modules>
+    	<module>csv-writer</module>
+	</modules>
 
 	<dependencies>
 		<dependency>

@@ -16,6 +16,7 @@ public class CSVParserTest {
 		//stworzniea strumienia
 		ByteArrayInputStream strumien=new ByteArrayInputStream("jakub,daze,xxxx".getBytes());
 		
+		
 		// odczytanie listy osób
 		CSVParser parser=new CSVParser();
 		List<Person> list=parser.preprocessCSVFile(strumien);
@@ -50,14 +51,14 @@ public class CSVParserTest {
 		List<Person> list=parser.preprocessCSVFile(strumien1);
 		
 		Person person = list.get(0);
-		assertThat(person.getName(), CoreMatchers.equalTo("jakub2"));
-		assertThat(person.getId(), CoreMatchers.equalTo("daze2"));
-		assertThat(person.getAdres(), CoreMatchers.equalTo("xxxx2"));
-		
-		person = list.get(1);
 		assertThat(person.getName(), CoreMatchers.equalTo("jakub"));
 		assertThat(person.getId(), CoreMatchers.equalTo("daze"));
 		assertThat(person.getAdres(), CoreMatchers.equalTo("xxxx"));
+		
+		person = list.get(1);
+		assertThat(person.getName(), CoreMatchers.equalTo("jakub2"));
+		assertThat(person.getId(), CoreMatchers.equalTo("daze2"));
+		assertThat(person.getAdres(), CoreMatchers.equalTo("xxxx2"));
 	}
 	
 }
