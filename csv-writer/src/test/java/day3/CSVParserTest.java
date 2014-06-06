@@ -1,10 +1,10 @@
 package day3;
 
 import static org.junit.Assert.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.LinkedList;
-
+import java.util.List;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class CSVParserTest {
 		
 		// odczytanie listy osób
 		CSVParser parser=new CSVParser();
-		LinkedList<Person> list=parser.preprocessCSVFile(strumien);
+		List<Person> list=parser.preprocessCSVFile(strumien);
 		
 		Person person = list.get(0);
 		assertThat(person.getName(), CoreMatchers.equalTo("jakub"));
@@ -35,7 +35,7 @@ public class CSVParserTest {
 				// odczytanie listy osób
 				CSVParser parser=new CSVParser();
 			
-				LinkedList<Person> list=parser.preprocessCSVFile(strumien1);
+				List<Person> list=parser.preprocessCSVFile(strumien1);
 				
 				assertThat(list.size(), CoreMatchers.equalTo(2));			
 	}
@@ -47,7 +47,7 @@ public class CSVParserTest {
 		// odczytanie listy osób
 		CSVParser parser=new CSVParser();
 	
-		LinkedList<Person> list=parser.preprocessCSVFile(strumien1);
+		List<Person> list=parser.preprocessCSVFile(strumien1);
 		
 		Person person = list.get(0);
 		assertThat(person.getName(), CoreMatchers.equalTo("jakub2"));

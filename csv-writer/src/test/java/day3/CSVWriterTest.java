@@ -30,6 +30,7 @@ public class CSVWriterTest {
 	}	
 	
 	@Test
+	
 	public void shouldProperlyReadListFromStreamAndWriteItToStream() throws CSVException, IOException {
 		CSVParser parser=new CSVParser();
 		InputStream fp= new ByteArrayInputStream("Imie Nazwisko, Id jakies, Adres jakis".getBytes());

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
+import java.util.List;
 
 
 
@@ -15,7 +16,7 @@ public class CSVParser {
 	}
 
 
-	public LinkedList<Person> preprocessCSVFile(InputStream fp) throws CSVException, IOException{
+	public List<Person> preprocessCSVFile(InputStream fp) throws CSVException, IOException{
 	String line="";
 	String[] person;
 	Person newPerson;
