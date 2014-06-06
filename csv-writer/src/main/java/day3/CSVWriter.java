@@ -11,7 +11,7 @@ public class CSVWriter {
 		
 	}
 	
-	public String writePersonsToStream(OutputStream stream, List<Person> personsList) throws CSVException, IOException{
+	public void writePersonsToStream(OutputStream stream, List<Person> personsList) throws CSVException, IOException{
 		
 		Person readPerson;
 		String output="";
@@ -27,6 +27,6 @@ public class CSVWriter {
 			output=sb.toString();	
 		}
 		stream.write(output.getBytes());
-		return output;		
+				
 	}
 }
