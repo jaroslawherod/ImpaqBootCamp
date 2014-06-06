@@ -10,12 +10,12 @@ import java.util.List;
 public class HelloWorld {
 
     public static void main(String[] args) throws IOException {
-	String patch;
+	String path;
 	Reader reader = null;
 	
 	try {
-	    patch = "src//test//resources//sample.csv";
-	    reader = new FileReader( new File(patch) );
+	    path = "src//test//resources//sample.csv";
+	    reader = new FileReader( new File(path) );
 
 	    Parser person = new Parser();
 	    List<Container> l = person.parse(reader);

@@ -5,6 +5,15 @@ public class Container
 	private
 		String name, id, address;
 
+	public Container(){};
+	
+	public Container(String name, String id, String address)
+	{
+	    this.name = name;
+	    this.id = id;
+	    this.address = address;
+	}
+	
 	public String getName()
 	{
 		return name;
