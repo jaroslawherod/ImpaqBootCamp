@@ -7,6 +7,9 @@
         <dependent-module archiveName="csv-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/csv/csv">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="repository-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/repository/repository">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="csv-servlet"/>
         <property name="java-output-path" value="/csv-servlet/target/classes"/>
     </wb-module>

@@ -24,7 +24,8 @@
 		<module>hello-world</module>
     <module>csv</module>
     <module>csv-servlet</module>
-	</modules>
+    <module>repository</module>
+  </modules>
 
 	<dependencies>
 		<dependency>

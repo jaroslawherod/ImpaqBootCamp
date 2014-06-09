@@ -1,24 +1,31 @@
-package boot.camp.csv;
+package boot.camp.csv.model;
 
 public class Person {
-	
-	String name;
-	String pesel;
-	String adress;
-	
-	
-	public Person(String name, String peselString,
-			String adresString) {
-		super();;
+
+	private int id;
+	private String name;
+	private String pesel;
+	private String adress;
+
+	public Person(int id, String name, String pesel, String adress) {
+		super();
+		this.id = id;
 		this.name = name;
-		this.pesel = peselString;
-		this.adress = adresString;
+		this.pesel = pesel;
+		this.adress = adress;
 	}
-	
+
 	public Person() {
 	}
-	
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -34,17 +41,13 @@ public class Person {
 	public String getName() {
 		return name;
 	}
+
 	public String getPesel() {
 		return pesel;
 	}
+
 	public String getAdress() {
 		return adress;
-	}
-
-	@Override
-	public String toString() {
-		return "Person [name=" + name + ", pesel=" + pesel
-				+ ", adress=" + adress + "]";
 	}
 
 	@Override
@@ -52,6 +55,7 @@ public class Person {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((adress == null) ? 0 : adress.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((pesel == null) ? 0 : pesel.hashCode());
 		return result;
@@ -71,6 +75,8 @@ public class Person {
 				return false;
 		} else if (!adress.equals(other.adress))
 			return false;
+		if (id != other.id)
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -82,5 +88,11 @@ public class Person {
 		} else if (!pesel.equals(other.pesel))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", pesel=" + pesel
+				+ ", adress=" + adress + "]";
 	}
 }
