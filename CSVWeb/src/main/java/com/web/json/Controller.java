@@ -34,38 +34,23 @@ public class Controller extends HttpServlet{
 		PrintWriter out=response.getWriter();
 		Gson gson=new Gson();
 		CSVParser csvParser=new CSVParser();
-		out.write(gson.toJson(csvParser.preprocessCSVFile(file)));
+		List <Person> personsList=csvParser.preprocessCSVFile(file);
+		out.write(gson.toJson(personsList));
 		out.flush();
 		out.close();
     }	
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*PrintWriter os=new PrintWriter("C:/cos.txt");
-		BufferedReader isr=request.getReader();
 		
-		
-			os.write(isr.readLine());
-		
-		os.close();*/
 		Gson gson=new Gson();
-		InputStream readStream=request.getInputStream();
 		ServletContext context = getServletContext();
+		BufferedReader readStream=request.getReader();
 		CSVWriter csvWriteFile=new CSVWriter();
-		Person newPerson = new Person();
 		String fullPath = context.getRealPath("inputdata.csv");
 		List<Person> personsList=new LinkedList<Person>();
-	
-		InputStreamReader stream=new InputStreamReader(readStream);
-		OutputStream fileWriter=new FileOutputStream(fullPath);
-		JsonReader js=new JsonReader(stream);
-		js.beginArray();
-		while(js.hasNext())
-		personsList.add(gson.fromJson(stream, Person.class));
-		js.endArray();
-		newPerson.setId("9192938123");
-		newPerson.setName("Nowe Nazwisko");
-		newPerson.setAdres("ul. jajaksd 12 61-231 Poznan");
-		personsList.add(newPerson);
+		OutputStream fileWriter=new FileOutputStream(fullPath,true);
+		JsonReader js=new JsonReader(readStream);
+		personsList.add(gson.fromJson(readStream, Person.class));
 		csvWriteFile.writePersonsToStream(fileWriter, personsList);
 		js.close();
     }	

@@ -22,8 +22,8 @@ public class CSVWriter {
 		for(int i=0; i<personsList.size(); i++){
 			readPerson=personsList.get(i);
 			output=readPerson.getName()+separator+readPerson.getId()+separator+readPerson.getAdres();
-			sb.append(output);
 			sb.append(System.getProperty("line.separator"));
+			sb.append(output);
 			output=sb.toString();	
 		}
 		stream.write(output.getBytes());				

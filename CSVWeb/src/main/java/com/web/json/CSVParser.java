@@ -24,7 +24,6 @@ public class CSVParser {
 	LinkedList<Person> personalData = new LinkedList<Person>();
 	BufferedReader br = new BufferedReader(new InputStreamReader(fp));
 		while ((line=br.readLine())!=null){
-			if (!line.matches("[\\w|[^+]]+,[\\w|[^+]]+,[\\w|[^+]]+")) throw new CSVException("Błędny strumień wejściowy");
 			person=line.split(",");
 			newPerson=new Person(person[0],person[1],person[2]);
 			personalData.addLast(newPerson);		
