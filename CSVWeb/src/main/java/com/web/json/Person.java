@@ -1,15 +1,30 @@
 package com.web.json;
 
-
 public class Person {
 	
+	private String name;
 	private String id;
-	private String fullname;
-	private String address;
+	private String adres;
 	
-	Person(){
+	public Person(){
+		
 	}
 	
+	public Person(String name, String id, String adres){
+		this.name=name;
+		this.id=id;
+		this.adres=adres;
+	}
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -18,21 +33,13 @@ public class Person {
 		this.id = id;
 	}
 
-	public String getFullname() {
-		return fullname;
+	public String getAdres() {
+		return adres;
 	}
 
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
+	public void setAdres(String adres) {
+		this.adres = adres;
 	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-
+	
+	
 }

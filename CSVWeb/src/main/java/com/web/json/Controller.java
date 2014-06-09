@@ -1,6 +1,7 @@
 package com.web.json;
 
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -28,47 +29,44 @@ public class Controller extends HttpServlet{
     
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
-		String fullPath = context.getRealPath("/WEB-INF/inputdata.csv");
+		String fullPath = context.getRealPath("inputdata.csv");
+		InputStream file=new FileInputStream(fullPath);
 		PrintWriter out=response.getWriter();
 		Gson gson=new Gson();
-		List <Person> personsList=new LinkedList<Person>();
-		InputStream fp=new FileInputStream(fullPath);
-		BufferedReader br = new BufferedReader(new InputStreamReader(fp));
-		JsonReader jr=new JsonReader(br);
-		
-		jr.setLenient(true);
-		jr.beginArray();
-		while(jr.hasNext()){
-		personsList.add((Person) gson.fromJson(jr, Person.class));
-		}
-		jr.endArray();
-		for(int i=0;i<personsList.size();i++)
-		out.print(i+1+".\nFullname: "+personsList.get(i).getFullname()+"\nId:"+personsList.get(i).getId()+"\nAddress: "+personsList.get(i).getAddress()+"\n");
-		doPost(request,response);
-		br.close();
-		
+		CSVParser csvParser=new CSVParser();
+		out.write(gson.toJson(csvParser.preprocessCSVFile(file)));
+		out.flush();
+		out.close();
     }	
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*PrintWriter os=new PrintWriter("C:/cos.txt");
+		BufferedReader isr=request.getReader();
+		
+		
+			os.write(isr.readLine());
+		
+		os.close();*/
 		Gson gson=new Gson();
-		//BufferedReader br=request.getReader();
+		InputStream readStream=request.getInputStream();
 		ServletContext context = getServletContext();
-		String fullPath = context.getRealPath("/WEB-INF/inputdata.csv");
-        Person newPerson=new Person();
-        InputStream fp=new FileInputStream(fullPath);
-		BufferedReader br = new BufferedReader(new InputStreamReader(fp));
-		String jsonFile="";
-		while(br.ready()){
-			jsonFile=br.readLine();
-		}
-        FileWriter fw=new FileWriter(fullPath);
-        newPerson.setId("512412341");
-        newPerson.setFullname("asdqweasd Daze");
-        newPerson.setAddress("ul. jakas 12 61-123 Poznan");
-        String toJSon=gson.toJson(newPerson);
-        fw.write(jsonFile.replaceAll("]", ","+toJSon+"]"));
-        fw.flush();
-        fw.close();
-        br.close();
-        
+		CSVWriter csvWriteFile=new CSVWriter();
+		Person newPerson = new Person();
+		String fullPath = context.getRealPath("inputdata.csv");
+		List<Person> personsList=new LinkedList<Person>();
+	
+		InputStreamReader stream=new InputStreamReader(readStream);
+		OutputStream fileWriter=new FileOutputStream(fullPath);
+		JsonReader js=new JsonReader(stream);
+		js.beginArray();
+		while(js.hasNext())
+		personsList.add(gson.fromJson(stream, Person.class));
+		js.endArray();
+		newPerson.setId("9192938123");
+		newPerson.setName("Nowe Nazwisko");
+		newPerson.setAdres("ul. jajaksd 12 61-231 Poznan");
+		personsList.add(newPerson);
+		csvWriteFile.writePersonsToStream(fileWriter, personsList);
+		js.close();
     }	
 }
