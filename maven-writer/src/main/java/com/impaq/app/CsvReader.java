@@ -1,15 +1,18 @@
 package com.impaq.app;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parser {
+public class CsvReader {
 
-    public List<Container> parse(Reader reader) throws Exception {
+    public List<Container> read(Reader reader) throws Exception {
 	List<Container> personslist = new ArrayList<Container>();
+	//BufferedReader in = new BufferedReader( new InputStreamReader( new FileInputStream( filedir ), "UTF8") );
 	BufferedReader br = new BufferedReader(reader);
 	try {
 	    String line = "";
