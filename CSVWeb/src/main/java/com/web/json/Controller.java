@@ -28,11 +28,11 @@ public class Controller extends HttpServlet{
     
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
-		//String fullPath = context.getRealPath("/WEB-INF/test/foo.txt");
+		String fullPath = context.getRealPath("/WEB-INF/inputdata.csv");
 		PrintWriter out=response.getWriter();
 		Gson gson=new Gson();
 		List <Person> personsList=new LinkedList<Person>();
-		InputStream fp=new FileInputStream("C:/inputdata.csv");
+		InputStream fp=new FileInputStream(fullPath);
 		BufferedReader br = new BufferedReader(new InputStreamReader(fp));
 		JsonReader jr=new JsonReader(br);
 		
@@ -51,14 +51,16 @@ public class Controller extends HttpServlet{
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Gson gson=new Gson();
 		//BufferedReader br=request.getReader();
+		ServletContext context = getServletContext();
+		String fullPath = context.getRealPath("/WEB-INF/inputdata.csv");
         Person newPerson=new Person();
-        InputStream fp=new FileInputStream("C:/inputdata.csv");
+        InputStream fp=new FileInputStream(fullPath);
 		BufferedReader br = new BufferedReader(new InputStreamReader(fp));
 		String jsonFile="";
 		while(br.ready()){
 			jsonFile=br.readLine();
 		}
-        FileWriter fw=new FileWriter("C:/inputdata.csv");
+        FileWriter fw=new FileWriter(fullPath);
         newPerson.setId("512412341");
         newPerson.setFullname("asdqweasd Daze");
         newPerson.setAddress("ul. jakas 12 61-123 Poznan");
@@ -66,6 +68,7 @@ public class Controller extends HttpServlet{
         fw.write(jsonFile.replaceAll("]", ","+toJSon+"]"));
         fw.flush();
         fw.close();
+        br.close();
         
     }	
 }
