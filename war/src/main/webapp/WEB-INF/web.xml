@@ -4,14 +4,17 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
   <servlet>
-  	<servlet-name>GetResponse</servlet-name>
-  	<display-name>GetResponse</display-name>
+  	<servlet-name>GetRequest</servlet-name>
+  	<display-name>GetRequest</display-name>
   	<description></description>
-  	<servlet-class>GetResponse</servlet-class>
+  	<servlet-class>GetRequest</servlet-class>
   </servlet>
+  
   <servlet-mapping>
-  	<servlet-name>GetResponse</servlet-name>
-  	<url-pattern>/GetResponse</url-pattern>
+  	<servlet-name>GetRequest</servlet-name>
+  	<url-pattern>/GetRequest</url-pattern>
   </servlet-mapping>
+  
 </web-app>

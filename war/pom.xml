@@ -14,17 +14,27 @@
   <name>war Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+  
     <dependency>
     	<groupId>com.impaq.app</groupId>
     	<artifactId>maven-writer</artifactId>
     	<version>1.0-SNAPSHOT</version>
     	<scope>compile</scope>
     </dependency>
+ 
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${serlvet.version}</version>
+        <scope>provided</scope>
+    </dependency>
+ 
   </dependencies>
   <build>
   <plugins>
