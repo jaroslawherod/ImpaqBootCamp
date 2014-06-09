@@ -28,8 +28,13 @@ public class CSVRepository implements IRepository {
 	public CSVRepository() {
 		String filename = System.getProperty("user.home") + "\\repository.csv";
 		file = new File(filename);
-		System.out.println(file.getAbsolutePath());
-		System.out.println(file.getAbsolutePath());
+		CSVConverter<Person> converter = new PersonConverter();
+		parser = new CSVParser<Person>(converter);
+		writer = new CSVWriter<Person>(converter);
+	}
+	
+	public CSVRepository(String filename) {
+		file = new File(filename);
 		CSVConverter<Person> converter = new PersonConverter();
 		parser = new CSVParser<Person>(converter);
 		writer = new CSVWriter<Person>(converter);

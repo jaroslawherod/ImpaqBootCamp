@@ -7,6 +7,14 @@
 		<servlet-name>CSVServlet</servlet-name>
 		<display-name>CSV Servlet App</display-name>
 		<servlet-class>boot.camp.csvservlet.controller.CSVServlet</servlet-class>
+		<init-param>
+			<param-name>serviceClass</param-name>
+			<param-value>boot.camp.service.H2RepositoryService</param-value>
+		</init-param>
+		<init-param>
+			<param-name>serviceParameters</param-name>
+			<param-value>jdbc:h2:~/test,sa</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CSVServlet</servlet-name>

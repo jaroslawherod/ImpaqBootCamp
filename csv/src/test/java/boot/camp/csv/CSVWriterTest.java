@@ -29,15 +29,15 @@ public class CSVWriterTest {
 	public void initialize() {
 		stream = new ByteArrayOutputStream();
 		persons = new ArrayList<Person>();
-		persons.add(new Person(1, "Jaroslaw Herod", "800805123456",
+		persons.add(new Person("Jaroslaw Herod", "800805123456",
 				"ul. Bura 15 60-222 Poznan"));
-		persons.add(new Person(2, "Jan kowalski", "851205123456",
+		persons.add(new Person("Jan kowalski", "851205123456",
 				"ul. Nijaka 15 01-222 Warszawa"));
 	}
 	
 	@Test
 	public void writeTest() {
-		String expected = "1,Jaroslaw Herod,800805123456,ul. Bura 15 60-222 Poznan\n2,Jan kowalski,851205123456,ul. Nijaka 15 01-222 Warszawa";
+		String expected = "Jaroslaw Herod,800805123456,ul. Bura 15 60-222 Poznan\nJan kowalski,851205123456,ul. Nijaka 15 01-222 Warszawa";
 		try {
 			writer.write(stream, persons, ",", false);
 			try {
