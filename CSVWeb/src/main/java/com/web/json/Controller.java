@@ -2,9 +2,9 @@ package com.web.json;
 
 
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,38 +16,56 @@ import java.util.List;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
 public class Controller extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ServletContext context = getServletContext();
+		//String fullPath = context.getRealPath("/WEB-INF/test/foo.txt");
 		PrintWriter out=response.getWriter();
 		Gson gson=new Gson();
 		List <Person> personsList=new LinkedList<Person>();
 		InputStream fp=new FileInputStream("C:/inputdata.csv");
 		BufferedReader br = new BufferedReader(new InputStreamReader(fp));
-		personsList.add(gson.fromJson(br, Person.class));
+		JsonReader jr=new JsonReader(br);
+		
+		jr.setLenient(true);
+		jr.beginArray();
+		while(jr.hasNext()){
+		personsList.add((Person) gson.fromJson(jr, Person.class));
+		}
+		jr.endArray();
 		for(int i=0;i<personsList.size();i++)
-		out.print("<b>Fullname:</b> "+personsList.get(i).getFullname()+"  <b>Id:</b> "+personsList.get(i).getId()+"  <b>Address:</b> "+personsList.get(i).getAddress());
+		out.print(i+1+".\nFullname: "+personsList.get(i).getFullname()+"\nId:"+personsList.get(i).getId()+"\nAddress: "+personsList.get(i).getAddress()+"\n");
+		doPost(request,response);
 		br.close();
 		
     }	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Gson gson=new Gson();
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Gson gson=new Gson();
+		//BufferedReader br=request.getReader();
         Person newPerson=new Person();
-        OutputStream fp=new FileOutputStream("inputdata.csv",true);
-        PrintWriter fw=new PrintWriter(fp);
-        newPerson.setId("123124123");
-        newPerson.setFullname("Imie Nazwisko");
-        newPerson.setAddress("ul. ulica 12 61-123 Poznan");
+        InputStream fp=new FileInputStream("C:/inputdata.csv");
+		BufferedReader br = new BufferedReader(new InputStreamReader(fp));
+		String jsonFile="";
+		while(br.ready()){
+			jsonFile=br.readLine();
+		}
+        FileWriter fw=new FileWriter("C:/inputdata.csv");
+        newPerson.setId("512412341");
+        newPerson.setFullname("asdqweasd Daze");
+        newPerson.setAddress("ul. jakas 12 61-123 Poznan");
         String toJSon=gson.toJson(newPerson);
-        fw.print(toJSon);
-        fp.close();
-        response.setStatus(200);
+        fw.write(jsonFile.replaceAll("]", ","+toJSon+"]"));
+        fw.flush();
+        fw.close();
         
     }	
 }
