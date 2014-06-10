@@ -1,4 +1,4 @@
-package war;
+package com.impaq.app.contoller;
 
 import java.io.File;
 import java.io.FileReader;
@@ -13,19 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.impaq.app.Container;
 import com.impaq.app.CsvReader;
+import com.impaq.app.service.CsvDataService;
 
 public class Request extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private String path = "C://Users//amac//Documents//sample.csv";
-
-	// private String path = "C://Users//Andrzej//Documents//sample.csv";
-
-	// czy mozna do klasy reader w poprzednim projekcie dac strema zamiast readera ?
-	// co zrobic z kodowaniem znakow przy odczytywaniu z linii ?
 
 	public Request() {
 		// TODO Auto-generated constructor stub
@@ -34,29 +29,18 @@ public class Request extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		CsvReader csvread;
-		Reader reader;
-		List<Container> people;
-		CsvDataGetter getdata;
-		List<JsonObject> jsonlist;
-		try {
-			csvread = new CsvReader();
-			reader = new FileReader(new File(this.path));
-			people = csvread.read(reader);
-			getdata = new CsvDataGetter();
-			jsonlist = getdata.getjson(people);
-
-			response.setContentType("text/plain; charset=UTF-8");
-			response.setCharacterEncoding("UTF-8");
-			request.setCharacterEncoding("UTF-8");
+			CsvDataService cds = new CsvDataService();
+			String jsonresult = cds.getdatafromrequest();
+			
+			response.setContentType("application/json; charset=UTF-8");
+			//response.setCharacterEncoding("UTF-8");
+			//request.setCharacterEncoding("UTF-8");
 			
 			PrintWriter pw = response.getWriter();
-			pw.print(jsonlist.toString());
+			pw.print( jsonresult );
 			pw.close();
-		} catch (Exception e) {
-			e.getMessage();
-		}
-
+			
+		
 	}
 
 	protected void doPost(HttpServletRequest request,
@@ -68,7 +52,7 @@ public class Request extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();		
 		Enumeration<String> tmp = request.getParameterNames();
-		CsvDataWriter csvwriter = new CsvDataWriter();
+		CsvDataService csvwriter = new CsvDataService();
 		List<Container> list = csvwriter.getlistfromrequest(tmp.nextElement());
 		csvwriter.appendtocsv(this.path, list);
 
