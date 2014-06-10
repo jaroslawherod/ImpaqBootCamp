@@ -1,6 +1,5 @@
 package war;
 
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,63 +21,65 @@ public class Request extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private String path = "C://Users//amac//Documents//sample.csv";
-	//private String path = "C://Users//Andrzej//Documents//sample.csv";
-	
-	//czy mozna do klasy reader w poprzednim projekcie dac strema zamiast readera ?
-	//co zrobic z kodowaniem znakow przy odczytywaniu z linii ?
-	
-    public Request() {
-        // TODO Auto-generated constructor stub
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	// private String path = "C://Users//Andrzej//Documents//sample.csv";
+
+	// czy mozna do klasy reader w poprzednim projekcie dac strema zamiast readera ?
+	// co zrobic z kodowaniem znakow przy odczytywaniu z linii ?
+
+	public Request() {
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 		CsvReader csvread;
 		Reader reader;
 		List<Container> people;
 		CsvDataGetter getdata;
 		List<JsonObject> jsonlist;
-		try
-		{
+		try {
 			csvread = new CsvReader();
-			reader = new FileReader(new File(this.path) );
+			reader = new FileReader(new File(this.path));
 			people = csvread.read(reader);
 			getdata = new CsvDataGetter();
 			jsonlist = getdata.getjson(people);
+
+			response.setContentType("text/plain; charset=UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			request.setCharacterEncoding("UTF-8");
 			
 			PrintWriter pw = response.getWriter();
 			pw.print(jsonlist.toString());
 			pw.close();
+		} catch (Exception e) {
+			e.getMessage();
 		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-		
+
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		response.setContentType("text/plain; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		
-		
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();		
 		Enumeration<String> tmp = request.getParameterNames();
-		
 		CsvDataWriter csvwriter = new CsvDataWriter();
 		List<Container> list = csvwriter.getlistfromrequest(tmp.nextElement());
-		//csvwriter.appendtocsv(this.path, tmp.nextElement());
+		csvwriter.appendtocsv(this.path, list);
+
+		//out.println("<html><body>");
+		//out.println(list.get(0).getName() + " " + list.get(0).getAddress()	+ " " + list.get(0).getId());
+		//out.println(list.get(1).getName() + " " + list.get(1).getAddress()	+ " " + list.get(1).getId());
+		//out.println("</body></html>");
+		//out.close();
 		
-		out.println("<html><body>");
-		out.println(list.get(0).getName() + " " + list.get(0).getAddress() + " " + list.get(0).getId());
-		out.println(list.get(1).getName() + " " + list.get(1).getAddress() + " " + list.get(1).getId());
-		out.println("</body></html>");
-		out.close();
-		
-		
-		
-		
-		
+		this.doGet(request, response);
+
 	}
 
 }

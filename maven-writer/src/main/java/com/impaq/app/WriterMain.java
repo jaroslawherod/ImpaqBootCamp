@@ -10,25 +10,25 @@ import java.io.Writer;
 import java.util.List;
 
 public class WriterMain {
-	public WriterMain(  ) throws IOException {
+	public WriterMain() throws IOException {
 		String path, patchnewfile;
 		Reader reader = null;
-		Parser person = null;
+		CsvReader person = null;
 
 		Writer wr = null;
-		SaveCsv writer = null;
+		CsvWriter writer = null;
 
 		try {
 			path = "src//test//resources//sample.csv";
 			patchnewfile = "src//test//resources//newcsv.csv";
 			reader = new FileReader(new File(path));
-			person = new Parser();
-			List<Container> l = person.parse(reader);
+			person = new CsvReader();
+			List<Container> l = person.read(reader);
 
 			File check = new File(patchnewfile);
 
 			wr = new FileWriter(patchnewfile);
-			writer = new SaveCsv();
+			writer = new CsvWriter();
 			writer.savetofile(wr, l);
 
 		} catch (FormatException exformat) {
