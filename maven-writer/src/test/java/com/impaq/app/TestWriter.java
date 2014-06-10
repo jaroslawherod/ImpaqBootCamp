@@ -18,7 +18,7 @@ public class TestWriter {
 	Container c1 = new Container("a", "b", "c");
 	people.add(c1);
 	StringWriter sw = new StringWriter();
-	SaveCsv save = new SaveCsv();
+	CsvWriter save = new CsvWriter();
 	save.savetofile(sw, people);
 
 	// sprawdzenie czy wprowadzone dane sa poprawne
@@ -32,7 +32,7 @@ public class TestWriter {
 	Container c1 = new Container("a", "b", "c");
 	people.add(c1);
 	StringWriter sw = new StringWriter();
-	SaveCsv save = new SaveCsv();
+	CsvWriter save = new CsvWriter();
 	save.savetofile(sw, people);
 
 	// sprawdzenie czy linia zawiera trzy elementy
@@ -49,7 +49,7 @@ public class TestWriter {
 	Container c2 = new Container("x", "y", "z");
 	people.add(c2);
 	StringWriter sw = new StringWriter();
-	SaveCsv save = new SaveCsv();
+	CsvWriter save = new CsvWriter();
 	save.savetofile(sw, people);
 
 	// sprawdzenie czy plik zawiera odpowiednia ilosc lini
