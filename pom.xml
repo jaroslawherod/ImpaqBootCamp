@@ -27,6 +27,7 @@
 		<module>csv-servlet</module>
 		<module>repository</module>
 		<module>repository-service</module>
+		<module>springmvc-jsf</module>
 	</modules>
 
 	<dependencies>

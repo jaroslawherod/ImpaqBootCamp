@@ -2,7 +2,6 @@ package boot.camp.csvservlet.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
@@ -21,7 +20,7 @@ import boot.camp.service.RepositoryService;
 import boot.camp.service.RepositoryServiceException;
 
 public class CSVServlet extends HttpServlet {
-	
+
 	private ObjectMapper mapper;
 	private RepositoryService service;
 
@@ -29,21 +28,19 @@ public class CSVServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		mapper = new ObjectMapper();
 		RepositoryFactory factory = new RepositoryFactory();
-		System.out.print("Parameter names: ");
-		for (Enumeration<String> e = config.getInitParameterNames(); e.hasMoreElements();)
-		       System.out.println(e.nextElement());
 		try {
-			Class<?> serviceClass = Class.forName(config.getInitParameter("serviceClass"));
-			String[] serviceParameters = config.getInitParameter("serviceParameters").split(",");
-			IRepository repository = factory.createRepository(serviceClass, serviceParameters);
+			Class<?> serviceClass = Class.forName(config
+					.getInitParameter("serviceClass"));
+			String[] serviceParameters = config.getInitParameter(
+					"serviceParameters").split(",");
+			IRepository repository = factory.createRepository(serviceClass,
+					serviceParameters);
 			service = new RepositoryService(repository);
 		} catch (ClassNotFoundException | RepositoryException e) {
 			throw new ServletException(e);
