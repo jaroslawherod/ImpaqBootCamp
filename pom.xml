@@ -23,8 +23,8 @@
 
 	<modules>
 		<module>hello-world</module>
-		<module>maven-writer</module>
-		<module>war</module>
+		<module>ContactsCsvService</module>
+		<module>PersonWebApp</module>
 	</modules>
 
 	<dependencies>
