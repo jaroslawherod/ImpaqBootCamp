@@ -18,11 +18,17 @@ import boot.camp.springjsf.service.PeopleServiceException;
 @RequestMapping("/persons")
 public class PeopleController {
 	
-	@Autowired
 	private PeopleService peopleService;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@Autowired
+	public PeopleController(PeopleService service) {
+		this.peopleService = service;
+	}
+	
+	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String getPeople(Model model) {
+
+		System.out.println("Controller");
 		try {
 			Collection<Person> people = peopleService.getPeople();
 			model.addAttribute("people", people);
@@ -34,7 +40,7 @@ public class PeopleController {
 		return null;		
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/", method = RequestMethod.POST)
 	public void savePerson(@ModelAttribute("person") Person person, BindingResult result) {
 		try {
 			peopleService.savePerson(person);
