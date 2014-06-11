@@ -14,26 +14,27 @@ import boot.camp.repository.RepositoryFactory;
 import boot.camp.service.RepositoryService;
 
 @Configuration
-@ComponentScan("boot.camp.springjsf")
+@ComponentScan({"boot.camp.springjsf.controller", "boot.camp.springjsf.service"})
 @EnableWebMvc
 public class Config {
-	
+
 	@Bean
 	public UrlBasedViewResolver setupViewResolver() {
-		 UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-		 resolver.setPrefix("/WEB-INF/views/");
-		 resolver.setSuffix(".jsp");
-		 resolver.setViewClass(JstlView.class);
-		 return resolver;
+		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setSuffix(".jsp");
+		resolver.setViewClass(JstlView.class);
+		return resolver;
 	}
-	
+
 	@Bean
 	public RepositoryService repositoryService() throws ConfigServiceException {
 		RepositoryFactory factory = new RepositoryFactory();
-		String[] parameters = new String[]{"jdbc:h2:~/test", "sa", ""};
+		String[] parameters = new String[] { "jdbc:h2:~/test", "sa", "" };
 		IRepository repository;
 		try {
-			repository = factory.createRepository(H2Repository.class, parameters );
+			repository = factory.createRepository(H2Repository.class,
+					parameters);
 			return new RepositoryService(repository);
 		} catch (RepositoryException e) {
 			throw new ConfigServiceException(e);

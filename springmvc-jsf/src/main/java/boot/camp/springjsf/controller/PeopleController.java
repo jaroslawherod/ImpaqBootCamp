@@ -22,14 +22,16 @@ public class PeopleController {
 	private PeopleService peopleService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public void getPeople(Model model) {
+	public String getPeople(Model model) {
 		try {
 			Collection<Person> people = peopleService.getPeople();
 			model.addAttribute("people", people);
+			return "index";
 		} catch (PeopleServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
+		return null;		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
