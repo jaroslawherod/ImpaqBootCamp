@@ -33,8 +33,8 @@ public class WebInitializer implements WebApplicationInitializer {
 		springServlet.addMapping("/");
 		springServlet.setLoadOnStartup(1);
 
-//		 Dynamic facesServlet = servletContext.addServlet("faces", new FacesServlet());
-//		 facesServlet.addMapping("*.jsf");
-//		 facesServlet.setLoadOnStartup(1);
+		 Dynamic facesServlet = servletContext.addServlet("faces", new FacesServlet());
+		 facesServlet.addMapping("*.jsf");
+		 facesServlet.setLoadOnStartup(1);
 	}
 }

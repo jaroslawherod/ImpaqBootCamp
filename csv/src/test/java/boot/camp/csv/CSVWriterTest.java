@@ -13,8 +13,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import boot.camp.csv.model.Person;
 import boot.camp.csv.model.PersonConverter;
+import boot.camp.csv.model.Person;
 
 public class CSVWriterTest {
 

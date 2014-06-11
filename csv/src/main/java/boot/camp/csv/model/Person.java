@@ -1,7 +1,14 @@
 package boot.camp.csv.model;
 
-public class Person {
+import java.io.Serializable;
 
+public class Person implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4996291988163865660L;
+	
 	private String name;
 	private String pesel;
 	private String adress;

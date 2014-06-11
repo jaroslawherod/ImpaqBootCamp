@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import boot.camp.csv.model.Person;
 import boot.camp.csv.model.PersonConverter;
+import boot.camp.csv.model.Person;
 
 public class CSVParser<T> {
 	

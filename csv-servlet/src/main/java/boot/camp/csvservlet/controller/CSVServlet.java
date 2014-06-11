@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-import boot.camp.csv.model.Person;
 import boot.camp.repository.IRepository;
 import boot.camp.repository.RepositoryException;
 import boot.camp.repository.RepositoryFactory;
+import boot.camp.csv.model.Person;
 import boot.camp.service.RepositoryService;
 import boot.camp.service.RepositoryServiceException;
 

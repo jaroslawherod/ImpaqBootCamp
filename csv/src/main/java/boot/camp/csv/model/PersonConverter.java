@@ -5,6 +5,7 @@ import java.util.List;
 
 import boot.camp.csv.CSVConverter;
 import boot.camp.csv.CSVConverterException;
+import boot.camp.csv.model.Person;
 
 public class PersonConverter extends CSVConverter<Person>{
 

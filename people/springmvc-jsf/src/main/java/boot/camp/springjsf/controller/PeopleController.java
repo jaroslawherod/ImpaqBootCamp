@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import boot.camp.csv.model.Person;
 import boot.camp.springjsf.service.PeopleService;
-import boot.camp.springjsf.service.PeopleServiceException;
 
 @Controller
-@RequestMapping("/persons")
+@RequestMapping("/people")
 public class PeopleController {
 	
 	private PeopleService peopleService;
@@ -29,11 +28,18 @@ public class PeopleController {
 	public String getPeople(Model model) {
 		Collection<Person> people = peopleService.getPeople();
 		model.addAttribute("people", people);
-		return "index";		
+		return "people";		
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public void savePerson(@ModelAttribute("person") Person person, BindingResult result) {
+	@RequestMapping(value="new", method = RequestMethod.POST)
+	public String prepareSavePerson(@ModelAttribute("person") Person person, BindingResult result) {
+		//peopleService.savePerson(person);
+		return "new";
+	}
+	
+	@RequestMapping(value="new", method = RequestMethod.POST)
+	public String savePerson(@ModelAttribute("person") Person person, BindingResult result) {
 		peopleService.savePerson(person);
+		return "redirect:/people";
 	}
 }
