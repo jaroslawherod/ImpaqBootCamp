@@ -25,28 +25,15 @@ public class PeopleController {
 		this.peopleService = service;
 	}
 	
-	@RequestMapping(value="/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String getPeople(Model model) {
-
-		System.out.println("Controller");
-		try {
-			Collection<Person> people = peopleService.getPeople();
-			model.addAttribute("people", people);
-			return "index";
-		} catch (PeopleServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;		
+		Collection<Person> people = peopleService.getPeople();
+		model.addAttribute("people", people);
+		return "index";		
 	}
 	
-	@RequestMapping(value="/", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public void savePerson(@ModelAttribute("person") Person person, BindingResult result) {
-		try {
-			peopleService.savePerson(person);
-		} catch (PeopleServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		peopleService.savePerson(person);
 	}
 }

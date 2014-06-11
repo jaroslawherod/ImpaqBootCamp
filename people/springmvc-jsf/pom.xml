@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.impaqgroup</groupId>
-		<artifactId>boot-camp</artifactId>
+		<artifactId>people</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>springmvc-jsf</artifactId>
@@ -49,19 +49,18 @@
 			<artifactId>jsf-api</artifactId>
 			<version>2.1</version>
 		</dependency>
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-impl</artifactId>
-			<version>2.1.7</version>
-		</dependency>
+
+
+
 	</dependencies>
 	<build>
 		<finalName>springmvc-jsf</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
+				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>7.0.0.pre5</version>
+				<version>9.2.0.v20140526</version>
+
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webApp>

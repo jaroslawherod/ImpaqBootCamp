@@ -1,6 +1,6 @@
 package boot.camp.springjsf.config;
 
-public class ConfigServiceException extends Exception {
+public class ConfigServiceException extends RuntimeException {
 	
 	/**
 	 * 

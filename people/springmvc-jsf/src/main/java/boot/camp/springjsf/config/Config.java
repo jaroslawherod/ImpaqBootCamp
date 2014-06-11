@@ -4,7 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
+
 import boot.camp.repository.H2Repository;
 import boot.camp.repository.IRepository;
 import boot.camp.repository.RepositoryException;
@@ -12,16 +14,18 @@ import boot.camp.repository.RepositoryFactory;
 import boot.camp.service.RepositoryService;
 
 @Configuration
-@ComponentScan(basePackages={"boot.camp.springjsf.controller", "boot.camp.springjsf.service"})
+@ComponentScan(basePackages = { "boot.camp.springjsf.controller",
+		"boot.camp.springjsf.service" })
 @EnableWebMvc
 public class Config {
 
 	@Bean
-	public InternalResourceViewResolver configureInternalResourceViewResolver() {
-	    InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-	    resolver.setPrefix("/WEB-INF/");
-	    resolver.setSuffix(".jsp");
-	    return resolver;
+	public UrlBasedViewResolver setupViewResolver() {
+		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setSuffix(".jsp");
+		resolver.setViewClass(JstlView.class);
+		return resolver;
 	}
 
 	@Bean

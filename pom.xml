@@ -25,9 +25,7 @@
 		<module>hello-world</module>
 		<module>csv</module>
 		<module>csv-servlet</module>
-		<module>repository</module>
-		<module>repository-service</module>
-		<module>springmvc-jsf</module>
+		<module>people</module>
 	</modules>
 
 	<dependencies>
@@ -38,13 +36,11 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>${h2.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>${serlvet.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

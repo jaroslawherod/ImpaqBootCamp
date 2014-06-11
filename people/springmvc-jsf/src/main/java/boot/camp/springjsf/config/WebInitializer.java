@@ -1,8 +1,6 @@
 package boot.camp.springjsf.config;
 
-//import javax.faces.webapp.FacesServlet;
-import java.util.Set;
-
+import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
@@ -12,8 +10,6 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-
-import boot.camp.springjsf.config.Config;
 
 ;
 
@@ -37,9 +33,8 @@ public class WebInitializer implements WebApplicationInitializer {
 		springServlet.addMapping("/");
 		springServlet.setLoadOnStartup(1);
 
-		// Dynamic facesServlet = servletContext.addServlet("faces", new
-		// FacesServlet());
-		// facesServlet.addMapping("*.jsf");
-		// facesServlet.setLoadOnStartup(1);
+//		 Dynamic facesServlet = servletContext.addServlet("faces", new FacesServlet());
+//		 facesServlet.addMapping("*.jsf");
+//		 facesServlet.setLoadOnStartup(1);
 	}
 }

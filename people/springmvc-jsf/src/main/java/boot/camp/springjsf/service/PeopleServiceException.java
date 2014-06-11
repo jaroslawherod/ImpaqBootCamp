@@ -1,6 +1,6 @@
 package boot.camp.springjsf.service;
 
-public class PeopleServiceException extends Exception {
+public class PeopleServiceException extends RuntimeException {
 	
 	/**
 	 * 
