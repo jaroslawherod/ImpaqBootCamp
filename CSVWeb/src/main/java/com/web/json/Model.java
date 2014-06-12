@@ -66,6 +66,4 @@ public class Model {
 			throw new JsonException("Nieprawidlowy format danych",e);
 		}
 	}
-	
-	
 }
