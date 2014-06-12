@@ -12,20 +12,20 @@ public class CSVWriter {
 	}
 	
 	public void writePersonsToStream(OutputStream stream, List<Person> personsList) throws CSVException, IOException{
-		
 		Person readPerson;
-		String output="";
 		StringBuilder sb = new StringBuilder();
 		String separator=",";
 		
-		
 		for(int i=0; i<personsList.size(); i++){
 			readPerson=personsList.get(i);
-			output=readPerson.getName()+separator+readPerson.getId()+separator+readPerson.getAdres();
-			sb.append(System.getProperty("line.separator"));
-			sb.append(output);
-			output=sb.toString();	
+			//sb.append (readPerson.getName()  separator+readPerson.getId()  separator+readPerson.getAdres())
+			sb.append(readPerson.getName());
+			sb.append(separator);
+			sb.append(readPerson.getId());
+			sb.append(separator);
+			sb.append(readPerson.getAdres());
+			sb.append(System.lineSeparator());	
 		}
-		stream.write(output.getBytes());				
+		stream.write(sb.toString().getBytes());				
 	}
 }

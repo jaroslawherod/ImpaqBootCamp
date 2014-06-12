@@ -15,7 +15,6 @@ public class CSVParser {
 	public CSVParser(){ 
 	}
 
-
 	public List<Person> preprocessCSVFile(InputStream fp) throws CSVException, IOException{
 	if (fp.available()==0) throw new CSVException("Brak strumienia lub strumień pusty");
 	String line="";
