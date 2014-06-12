@@ -2,8 +2,8 @@ package personwebapp.service;
 
 import java.util.List;
 
-import personwebapp.repository.PersonWebAppRepository;
-import personwebapp.repository.RepositoryExceptions;
+import repository.csvservice.PersonWebAppRepository;
+import repository.csvservice.RepositoryExceptions;
 import contactscsvservice.Contact;
 
 public class PersonWebAppService {

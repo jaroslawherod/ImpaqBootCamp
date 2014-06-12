@@ -1,4 +1,4 @@
-package personwebapp.repository;
+package repository.csvservice;
 
 public class RepositoryExceptions extends Exception{
 
