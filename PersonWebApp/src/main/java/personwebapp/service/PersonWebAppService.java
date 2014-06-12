@@ -8,19 +8,17 @@ import contactscsvservice.Contact;
 
 public class PersonWebAppService {
 
-	private String path;
+	private PersonWebAppRepository personRepository;
 	
-	public PersonWebAppService(String path)	{
-		this.path = path;
+	public PersonWebAppService(String path, PersonWebAppRepository personRepository)	{
+		this.personRepository = personRepository;
 	}
 	
 	public List<Contact> findAll() throws ServiceException {
 
-		PersonWebAppRepository personRepository;
 		List<Contact> people = null;
 		try {
 			
-			personRepository = new PersonWebAppRepository(this.path);
 			people = personRepository.findAll();
 			
 		} catch (RepositoryExceptions e) {
@@ -39,7 +37,6 @@ public class PersonWebAppService {
 			//List<Contact> fileContent = this.findAll(); 
 			//this.validateData(people, fileContent); 
 			
-			PersonWebAppRepository personRepository = new PersonWebAppRepository(this.path);
 			personRepository.save(people);
 
 		} catch (RepositoryExceptions e) {
@@ -49,7 +46,6 @@ public class PersonWebAppService {
 		} catch (Exception e) {
 			throw new Exception("Nieznany błąd.", e);
 		}
-
 	}
 
 	public void validateData(List<Contact> contactsFromReqiest,	List<Contact> contactsFromFileContent) 

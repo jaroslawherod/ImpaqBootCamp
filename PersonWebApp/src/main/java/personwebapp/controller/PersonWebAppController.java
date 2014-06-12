@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import personwebapp.repository.PersonWebAppRepository;
 import personwebapp.service.PersonWebAppService;
 import personwebapp.service.ServiceException;
 
@@ -31,22 +32,22 @@ public class PersonWebAppController extends HttpServlet {
 		response.setContentType("application/json; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		
+
 		PersonWebAppService personService;
 		List<Contact> people;
 		Gson jsonService;
 		try {
-			
+
 			jsonService = new Gson();
-			personService = new PersonWebAppService(this.path);
+			personService = new PersonWebAppService(this.path, new PersonWebAppRepository(this.path));
 			people = personService.findAll();
-			
+
 			PrintWriter writer = response.getWriter();
-			writer.print( jsonService.toJson(people) );
+			writer.print(jsonService.toJson(people));
 			writer.close();
-			
-		} catch (ServiceException e) {
-			e.printStackTrace(); // tutaj rzucic jakis http
+
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 
 	}
@@ -57,24 +58,27 @@ public class PersonWebAppController extends HttpServlet {
 		response.setContentType("application/json; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		
+
 		BufferedReader jsonStream;
 		List<Contact> people;
 		Gson jsonService;
 		Type list;
 		PersonWebAppService csvWriter;
+
 		try {
-			
+
 			jsonStream = request.getReader();
 			jsonService = new Gson();
-			list = new TypeToken<List<Contact>>(){}.getType();
+			list = new TypeToken<List<Contact>>() {}.getType();
 			people = jsonService.fromJson(jsonStream, list);
-			csvWriter = new PersonWebAppService(this.path);
+			csvWriter = new PersonWebAppService(this.path, new PersonWebAppRepository(this.path));
 			csvWriter.update(people);
 
+		} catch (ServiceException e) {
+			response.sendError(422);
 		} catch (Exception e) {
-			e.printStackTrace(); //tutaj rzucic jakis kod http
+			throw new RuntimeException(e);
 		}
-		
+
 	}
 }
