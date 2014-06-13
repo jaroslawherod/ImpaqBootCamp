@@ -1,10 +1,9 @@
-package com.web.json;
+package com.contacts.web;
 
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

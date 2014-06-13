@@ -24,7 +24,10 @@
 		<module>hello-world</module>
     	<module>CSVWeb</module>
     	<module>csv-writer</module>
-	</modules>
+    <module>contacts</module>
+    <module>asdasd</module>
+    <module>sadsda</module>
+  </modules>
 
 	<dependencies>
 		<dependency>
@@ -54,6 +57,11 @@
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>2.2.4</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
