@@ -37,6 +37,3 @@ public class Controller extends HttpServlet{
 		model.addPerson(readStream);
 	}	
 }
-
-//repository operuje na pliku za pom. CSVWriter
-//service korzysta z repozytorium
