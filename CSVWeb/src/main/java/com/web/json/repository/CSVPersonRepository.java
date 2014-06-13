@@ -1,4 +1,4 @@
-package com.web.json.Repository;
+package com.web.json.repository;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,13 +14,13 @@ import com.web.json.CSVWriter;
 import com.web.json.Person;
 
 
-public class Repository {
+public class CSVPersonRepository implements PersonRepository{
 	private CSVParser parser;
 	private CSVWriter writer;
 	private InputStream fileInputStream;
 	private OutputStream fileOutputStream;
 	
-	public Repository(){
+	public CSVPersonRepository(){
 		String filePath=System.getProperty("user.home")+"/inputdata.csv";
 		try {
 			fileInputStream=new FileInputStream(filePath);
@@ -36,10 +36,22 @@ public class Repository {
 		writer=new CSVWriter();
 	}
 	
-	public void savePerson(Person person) throws CSVException, IOException{
-		writer.writeOnePersonToStream(fileOutputStream, person);
+	public void createPerson(Person person){
+		try {
+			writer.writeOnePersonToStream(fileOutputStream, person);
+		} catch (CSVException e) {
+			throw new RepositoryException(e);
+		} catch (IOException e) {
+			throw new RepositoryException(e);
+		}
 	}
-	public List<Person> getPersons() throws CSVException, IOException{
-		return parser.preprocessCSVFile(fileInputStream);
+	public List<Person> findAllPersons(){
+		try {
+			return parser.preprocessCSVFile(fileInputStream);
+		} catch (CSVException e) {
+			throw new RepositoryException(e);
+		} catch (IOException e) {
+			throw new RepositoryException(e);
+		}
 	}
 }
