@@ -9,10 +9,10 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>PersonWebApp</artifactId>
+	<artifactId>contacts-web-app</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Contacts Webapp</name>
+	<name>contacts-web-app</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 

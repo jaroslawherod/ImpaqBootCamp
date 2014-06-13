@@ -4,7 +4,7 @@
 
 	<groupId>com.impaqgroup</groupId>
 	<artifactId>boot-camp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Impaq Boot Camp</name>
@@ -22,7 +22,7 @@
 
 	<modules>
 		<module>Contacts</module>
-  </modules>
+  	</modules>
   
 	<dependencies>
 		<dependency>
@@ -53,12 +53,11 @@
 				<version>${serlvet.version}</version>
 				<scope>provided</scope>
 			</dependency>
-			<!-- test dependencies -->
 			
 			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>1.2.17</version>
+				<groupId>con.imaqgroup</groupId>
+				<artifactId>Contacts</artifactId>
+				<version>1.0-SNAPSHOT</version>
 			</dependency>
 			
 		</dependencies>
