@@ -1,0 +1,28 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+	<display-name>Person Web Application</display-name>
+
+	<servlet>
+		<servlet-name>PersonWebAppController</servlet-name>
+		<display-name>PersonWebAppController</display-name>
+		<description></description>
+		<servlet-class>personwebapp.controller.PersonWebAppController</servlet-class>
+
+		<init-param>
+			<param-name>RepositoryParam</param-name>
+			<param-value>H2</param-value>
+			<description>This is an init parameter for repository</description>
+		</init-param>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PersonWebAppController</servlet-name>
+		<url-pattern>/PersonWebApp</url-pattern>
+	</servlet-mapping>
+
+</web-app>
