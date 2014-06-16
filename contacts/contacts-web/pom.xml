@@ -7,8 +7,8 @@
     <artifactId>contacts</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <packaging>jar</packaging>
-  <artifactId>csv-writer</artifactId>
+  <packaging>war</packaging>
+  <artifactId>contacts-web</artifactId>
   <name>contacts-web Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
@@ -18,18 +18,26 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>
-
+<!--
   		<dependency>
 			<groupId>com.impaqgroup.contacts</groupId>
 			<artifactId>contacts-service</artifactId>
 			<exclusions>
 				<exclusion>
 					<groupId>com.impaqgroup.contacts</groupId>
-					<artifactId>csv-writer</artifactId>
+					<artifactId>contacts-web</artifactId>
 			</exclusion>
 		</exclusions>
 		</dependency>
-		
+!-->
+  	<dependency>
+  		<groupId>com.impaqgroup.contacts</groupId>
+  		<artifactId>csv-writer</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.impaqgroup.contacts</groupId>
+  		<artifactId>contacts-service</artifactId>
+  	</dependency>
   </dependencies>
   
   <build>

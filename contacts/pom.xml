@@ -18,12 +18,19 @@
   
   <dependencyManagement>
   	<dependencies>
+
 		<dependency>
 			<groupId>com.impaqgroup.contacts</groupId>
 			<artifactId>csv-writer</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>com.impaqgroup.contacts</groupId>
+			<artifactId>contacts-web</artifactId>
+			<version>${project.version}</version>
+		</dependency>  	
+		
 		<dependency>
 			<groupId>com.impaqgroup.contacts</groupId>
 			<artifactId>contacts-service</artifactId>
@@ -59,5 +66,6 @@
     <module>contacts-web</module>
     <module>contacts-repository</module>
     <module>contacts-service</module>
+	<module>csv-writer</module>
   </modules>
 </project>

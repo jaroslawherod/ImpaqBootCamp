@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.contacts.web.Person;
+import day3.Person;
 
 public class H2PersonRepository implements PersonRepository{
 	private final String createUserTable="CREATE TABLE IF NOT EXISTS Persons(id varchar(255), fullname varchar(255) PRIMARY KEY,address varchar(255))";

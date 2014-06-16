@@ -1,4 +1,4 @@
-package com.contacts.web;
+package day3;
 
 import java.io.IOException;
 import java.io.OutputStream;

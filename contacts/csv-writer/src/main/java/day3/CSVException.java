@@ -1,4 +1,4 @@
-package com.contacts.web;
+package day3;
 
 public class CSVException extends RuntimeException {
 

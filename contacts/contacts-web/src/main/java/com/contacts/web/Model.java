@@ -13,6 +13,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import day3.*;
+
 
 public class Model {
 	

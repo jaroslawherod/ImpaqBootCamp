@@ -3,7 +3,7 @@ package com.contacts.repository;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.contacts.web.Person;
+import day3.Person;
 
 
 public interface PersonRepository {

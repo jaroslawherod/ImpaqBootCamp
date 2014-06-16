@@ -16,27 +16,21 @@
   
   <dependencies>
   
+	<!--
   	<dependency>
 		<groupId>com.impaqgroup.contacts</groupId>
-		<artifactId>contacts-service</artifactId>
-		<exclusions>
-			<exclusion>
-				<groupId>com.impaqgroup.contacts</groupId>
-				<artifactId>contacts-repository</artifactId>
-			</exclusion>
-		</exclusions>
+		<artifactId>constacts-web</artifactId>
 	</dependency>
-	
-  	<dependency>
-		<groupId>com.impaqgroup.contacts</groupId>
-		<artifactId>csv-writer</artifactId>
-	</dependency>
-
+	!-->
     <dependency>
 		<groupId>com.h2database</groupId>
 		<artifactId>h2</artifactId>
 	</dependency>
-	
+
+    <dependency>
+    	<groupId>com.impaqgroup.contacts</groupId>
+    	<artifactId>csv-writer</artifactId>
+    </dependency>
   </dependencies>
   
 </project>

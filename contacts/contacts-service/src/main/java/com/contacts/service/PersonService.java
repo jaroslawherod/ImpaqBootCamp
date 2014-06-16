@@ -3,10 +3,8 @@ package com.contacts.service;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-
-import com.contacts.web.CSVException;
-import com.contacts.web.Person;
-
+import day3.CSVException;
+import day3.Person;
 
 public interface PersonService {
 	void createPerson(Person person) throws CSVException,

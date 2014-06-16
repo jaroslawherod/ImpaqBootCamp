@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.contacts.repository.H2PersonRepository;
-import com.contacts.web.Person;
+import day3.Person;
 
 public class H2RepositoryTest {
 	private H2PersonRepository h2=new H2PersonRepository();
