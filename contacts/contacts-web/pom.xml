@@ -23,8 +23,6 @@
 			<groupId>com.impaqgroup.contacts</groupId>
 			<artifactId>contacts-service</artifactId>
 		</dependency>
-
-			
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -35,7 +33,6 @@
       		<artifactId>junit</artifactId>
       		<scope>test</scope>
     	</dependency>
-  
   </dependencies>
   
   <build>

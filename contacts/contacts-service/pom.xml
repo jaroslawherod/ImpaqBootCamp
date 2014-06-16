@@ -15,32 +15,35 @@
   <url>http://maven.apache.org</url>
   
   <dependencies>	
-  
+
   	<dependency>
+		<groupId>com.impaqgroup.contacts</groupId>
+		<artifactId>contacts-web</artifactId>
+		<type>war</type>
+	</dependency>
+	 
+	<dependency>
 		<groupId>com.impaqgroup.contacts</groupId>
 		<artifactId>contacts-repository</artifactId>
 		<exclusions>
-          <exclusion>
-            <groupId>com.impaqgroup.contacts</groupId>
-            <artifactId>contacts-service</artifactId>
-          </exclusion>
-        </exclusions>
+			<exclusion>
+			<groupId>com.impaqgroup.contacts</groupId>
+			<artifactId>contacts-service</artifactId>
+			</exclusion>
+		</exclusions>
 	</dependency>
 	 
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>servlet-api</artifactId>
 	</dependency>
+	
     <dependency>
       	<groupId>junit</groupId>
       	<artifactId>junit</artifactId>
     </dependency>
 
-    <dependency>
-    	<groupId>com.impaqgroup.contacts</groupId>
-    	<artifactId>contacts-web</artifactId>
-    	<type>war</type>
-    </dependency>
+
   </dependencies>
   
 </project>
