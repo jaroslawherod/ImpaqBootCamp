@@ -18,8 +18,13 @@
 
   	<dependency>
 		<groupId>com.impaqgroup.contacts</groupId>
-		<artifactId>contacts-web</artifactId>
-		<type>war</type>
+		<artifactId>csv-writer</artifactId>
+		<exclusions>
+			<exclusion>
+				<groupId>com.impaqgroup.contacts</groupId>
+				<artifactId>contacts-service</artifactId>
+			</exclusion>
+		</exclusions>
 	</dependency>
 	 
 	<dependency>
@@ -27,22 +32,12 @@
 		<artifactId>contacts-repository</artifactId>
 		<exclusions>
 			<exclusion>
-			<groupId>com.impaqgroup.contacts</groupId>
-			<artifactId>contacts-service</artifactId>
+				<groupId>com.impaqgroup.contacts</groupId>
+				<artifactId>contacts-service</artifactId>
 			</exclusion>
 		</exclusions>
 	</dependency>
 	 
-	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>servlet-api</artifactId>
-	</dependency>
-	
-    <dependency>
-      	<groupId>junit</groupId>
-      	<artifactId>junit</artifactId>
-    </dependency>
-
 
   </dependencies>
   

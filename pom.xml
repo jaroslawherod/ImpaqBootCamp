@@ -25,14 +25,16 @@
     	<module>CSVWeb</module>
     	<module>csv-writer</module>
     <module>contacts</module>
-    <module>asdasd</module>
-    <module>sadsda</module>
   </modules>
 
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 		
 	</dependencies>

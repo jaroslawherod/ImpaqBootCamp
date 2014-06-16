@@ -26,21 +26,17 @@
 			</exclusion>
 		</exclusions>
 	</dependency>
+	
   	<dependency>
 		<groupId>com.impaqgroup.contacts</groupId>
-		<artifactId>contacts-web</artifactId>
-		<type>war</type>
+		<artifactId>csv-writer</artifactId>
 	</dependency>
-	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>servlet-api</artifactId>
+
+    <dependency>
+		<groupId>com.h2database</groupId>
+		<artifactId>h2</artifactId>
 	</dependency>
 	
-    <dependency>
-      	<groupId>junit</groupId>
-      	<artifactId>junit</artifactId>
-      	<scope>test</scope>
-    </dependency>
   </dependencies>
   
 </project>
