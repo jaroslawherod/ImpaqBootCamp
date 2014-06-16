@@ -9,5 +9,7 @@ public interface IRepository {
 	public List<Person> getPeople() throws RepositoryException;
 	
 	public void savePerson(Person person) throws RepositoryException;
+	
+	public void dispose();
 
 }

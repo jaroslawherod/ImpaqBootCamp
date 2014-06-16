@@ -12,6 +12,8 @@ import boot.camp.repository.IRepository;
 import boot.camp.repository.RepositoryException;
 import boot.camp.repository.RepositoryFactory;
 import boot.camp.service.RepositoryService;
+import boot.camp.springjsf.controller.PeopleBean;
+import boot.camp.springjsf.controller.PersonBean;
 
 @Configuration
 @ComponentScan(basePackages = { "boot.camp.springjsf.controller",
@@ -23,12 +25,12 @@ public class Config {
 	public UrlBasedViewResolver setupViewResolver() {
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
-		resolver.setSuffix(".jsp");
+		resolver.setSuffix(".xhtml");
 		resolver.setViewClass(JstlView.class);
 		return resolver;
 	}
 
-	@Bean
+	@Bean(destroyMethod="dispose")
 	public RepositoryService repositoryService() throws ConfigServiceException {
 		RepositoryFactory factory = new RepositoryFactory();
 		String[] parameters = new String[] { "jdbc:h2:~/test", "sa", "" };
@@ -41,5 +43,14 @@ public class Config {
 			throw new ConfigServiceException(e);
 		}
 	}
-
+	
+	@Bean
+	PersonBean personBean() {
+		return new PersonBean();
+	}
+	
+	@Bean
+	PeopleBean peopleBean() {
+		return new PeopleBean();
+	}
 }

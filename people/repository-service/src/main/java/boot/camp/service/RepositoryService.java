@@ -30,5 +30,8 @@ public class RepositoryService {
 			throw new RepositoryServiceException(e);
 		}
 	}
-
+	
+	public void dispose() {
+		repository.dispose();
+	}
 }

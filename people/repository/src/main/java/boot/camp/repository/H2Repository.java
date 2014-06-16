@@ -130,4 +130,9 @@ public class H2Repository implements IRepository {
 			}
 		}
 	}
+
+	@Override
+	public void dispose() {
+		pool.dispose();		
+	}
 }

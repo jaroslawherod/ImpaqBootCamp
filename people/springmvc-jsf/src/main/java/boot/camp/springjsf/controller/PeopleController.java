@@ -4,11 +4,9 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import boot.camp.csv.model.Person;
 import boot.camp.springjsf.service.PeopleService;
@@ -16,29 +14,43 @@ import boot.camp.springjsf.service.PeopleService;
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
-	
+
+	@Autowired
 	private PeopleService peopleService;
-	
+
+	@Autowired
+	PeopleBean peopleBean;
+
+	@Autowired
+	PersonBean personBean;
+
 	@Autowired
 	public PeopleController(PeopleService service) {
 		this.peopleService = service;
 	}
-	
+
+	Person testPerson;
+
 	@RequestMapping(method = RequestMethod.GET)
-	public String getPeople(Model model) {
+	public String getPeople() {
 		Collection<Person> people = peopleService.getPeople();
-		model.addAttribute("people", people);
-		return "people";		
+		peopleBean.setPeople(people);
+		return "people";
 	}
-	
-	@RequestMapping(value="new", method = RequestMethod.POST)
-	public String prepareSavePerson(@ModelAttribute("person") Person person, BindingResult result) {
-		//peopleService.savePerson(person);
+
+	@RequestMapping(value = "new", method = RequestMethod.GET)
+	public String prepareSavePerson() {
+		// Person person = new Person();
+		// testPerson = person;
+		// personBean.setPerson(person);
 		return "new";
 	}
-	
-	@RequestMapping(value="new", method = RequestMethod.POST)
-	public String savePerson(@ModelAttribute("person") Person person, BindingResult result) {
+
+	@RequestMapping(value = "new", method = RequestMethod.POST)
+	public String savePerson(@RequestParam(value = "name") String name,
+			@RequestParam(value = "pesel") String pesel,
+			@RequestParam(value = "address") String address) {
+		Person person = new Person(name, pesel, address);
 		peopleService.savePerson(person);
 		return "redirect:/people";
 	}
