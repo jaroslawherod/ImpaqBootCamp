@@ -5,12 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.impaqgroup</groupId>
-		<artifactId>boot-camp</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<artifactId>Contacts</artifactId>
+		<version>1.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>contacts-web-app</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>contacts-web-app</name>
 	<url>http://maven.apache.org</url>
@@ -25,13 +24,21 @@
 		<dependency>
 			<groupId>com.impaqgroup</groupId>
 			<artifactId>contacts-csv-writer</artifactId>
-			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.impaqgroup</groupId>
+			<artifactId>contacts-service</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>com.impaqgroup</groupId>
 			<artifactId>contacts-repository</artifactId>
-			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -41,14 +48,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
 		</dependency>
 
 	</dependencies>
