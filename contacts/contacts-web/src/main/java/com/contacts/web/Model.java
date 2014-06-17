@@ -11,6 +11,10 @@ import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.contacts.repository.CSVPersonRepository;
+import com.contacts.repository.H2PersonRepository;
+import com.contacts.service.PersonService;
+import com.contacts.service.PersonServiceImpl;
 import com.google.gson.Gson;
 
 import day3.*;
@@ -18,49 +22,30 @@ import day3.*;
 
 public class Model {
 	
-	private List<Person> personsList=new LinkedList<Person>();
+	private PersonService csvPersonService=new PersonServiceImpl(new CSVPersonRepository());
+	private PersonService h2PersonService=new PersonServiceImpl(new H2PersonRepository());
 	
-	private String getPath(){
-		String userHomePath=System.getProperty("user.home");
-		return userHomePath+"/inputdata.csv";
+	public PersonService getCsvPersonService() {
+		return csvPersonService;
 	}
-	
-	private InputStream getInputStream(){
-		try {
-			return new FileInputStream(getPath());
-		} catch (FileNotFoundException e) {
-			throw new CSVException("Brak pliku",e);
-		}
+
+	public PersonService getH2PersonService() {
+		return h2PersonService;
 	}
-	
-	private List<Person> getCSVList(InputStream inputStream) throws CSVException, IOException{
-		CSVParser csvParser=new CSVParser();
-		return csvParser.preprocessCSVFile(inputStream);
-	}
-	
+
+	private List<Person> csvPersonsList=new LinkedList<Person>();
+	private List<Person> h2PersonsList=new LinkedList<Person>();
+
 	public void printJson(PrintWriter out) throws CSVException, FileNotFoundException, IOException{
-		personsList=getCSVList(getInputStream());
+		csvPersonsList=csvPersonService.findAllPersons();
+		h2PersonsList=h2PersonService.findAllPersons();
 		Gson gson=new Gson();
-		out.write(gson.toJson(personsList));
+		out.write(gson.toJson(csvPersonsList)+System.lineSeparator()+gson.toJson(h2PersonsList)+System.lineSeparator());
 		out.flush();
 		out.close();
 	}
 	
-	private OutputStream getOutputStream(){
-		try {
-			return new FileOutputStream(getPath(),true);
-		} catch (FileNotFoundException e) {
-			throw new CSVException("Brak pliku",e);
-		}
-	}
-	
-	public void addPerson(BufferedReader br) throws CSVException, IOException {
-		CSVWriter csvWriter=new CSVWriter();
-		personsList.add(validJson(br));
-		csvWriter.writePersonsToStream(getOutputStream(), personsList);
-	}
-	
-	private Person validJson(BufferedReader br) throws IOException{
+	public Person validJson(BufferedReader br) throws IOException{
 		Gson gson=new Gson();
 		try{
 			return gson.fromJson(br, Person.class);

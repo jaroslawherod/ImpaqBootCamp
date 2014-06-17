@@ -7,6 +7,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.servlet.Servlet;
+
+import org.h2.util.New;
+
 import day3.Person;
 
 public class H2PersonRepository implements PersonRepository{
@@ -15,6 +20,7 @@ public class H2PersonRepository implements PersonRepository{
 	private String findAllPersons="SELECT * FROM Persons";
 	private Statement statement;	
 	private Connection connection;
+
 	public H2PersonRepository() {
 		try {
 			Class.forName("org.h2.Driver");
@@ -30,18 +36,19 @@ public class H2PersonRepository implements PersonRepository{
 		try{
 			statement=connection.createStatement();
 			statement.execute(createUserTable);
+			statement.close();
 		}
 		catch(SQLException e){
 			throw new RepositoryException("Problem z wykonaniem zapytania",e);
 		}
-
-
 	}
 	
 	@Override
 	public void createPerson(Person person) {
 		try {
+			statement=connection.createStatement();
 			statement.execute(createPerson+"('"+person.getId()+"','"+person.getName()+"','"+person.getAdres()+"')");
+			statement.close();
 		} catch (SQLException e) {
 			throw new RepositoryException("Problem z wykonaniem zapytania do bazy danych",e);
 		}
@@ -49,7 +56,10 @@ public class H2PersonRepository implements PersonRepository{
 
 	public void deletePersonsTable(){
 		try {
+			statement=connection.createStatement();
 			statement.execute("DROP TABLE IF EXISTS Persons CASCADE");
+			
+			state
 		} catch (SQLException e) {
 			throw new RepositoryException("Nie mozna usunac tabeli Persons", e);
 		}

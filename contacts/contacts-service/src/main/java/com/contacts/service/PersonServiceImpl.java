@@ -1,10 +1,8 @@
 package com.contacts.service;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import com.contacts.repository.PersonRepository;
-import day3.CSVException;
 import day3.Person;
 
 public class PersonServiceImpl implements PersonService {
@@ -15,12 +13,20 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public void createPerson(Person person) throws CSVException, IOException, SQLException {
-		repository.createPerson(person);
+	public void createPerson(Person person) {
+		try {
+			repository.createPerson(person);
+		} catch (SQLException e) {
+			throw new ServiceException(e);
+		}
 	}
 
 	@Override
-	public List<Person> findAllPersons() throws CSVException, IOException, SQLException {
-		return repository.findAllPersons();
+	public List<Person> findAllPersons(){
+		try {
+			return repository.findAllPersons();
+		} catch (SQLException e) {
+			throw new ServiceException(e);
+		}
 	}
 }

@@ -24,6 +24,7 @@ public class Controller extends HttpServlet{
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BufferedReader readStream=request.getReader();
 		Model model=new Model();
-		model.addPerson(readStream);
+		model.getCsvPersonService().createPerson(model.validJson(readStream));
+		model.getH2PersonService().createPerson(model.validJson(readStream));
 	}	
 }
