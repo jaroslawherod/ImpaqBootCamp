@@ -27,7 +27,7 @@ public class Parser {
 		    throw new ParserException("Wrong number of parameters.");
 	    }
 	} catch (IOException e) {
-
+	    e.printStackTrace();
 	} finally {
 	    if (fr != null)
 		fr.close();

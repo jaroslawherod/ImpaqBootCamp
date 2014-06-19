@@ -1,10 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.impaqgroup</groupId>
-	<artifactId>boot-camp</artifactId>
+<groupId>com.impaqgroup</groupId>
 	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>boot-camp</artifactId>
 	<packaging>pom</packaging>
 
 	<name>Impaq Boot Camp</name>
@@ -22,6 +21,8 @@
 
 	<modules>
 		<module>hello-world</module>
+		<module>csv</module>
+		<module>contacts</module>
 	</modules>
 
 	<dependencies>
@@ -33,25 +34,55 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- compile time dependencies -->
-			<dependency>
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<version>${h2.version}</version>
-			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>${serlvet.version}</version>
 				<scope>provided</scope>
 			</dependency>
-			<!-- test dependencies -->
+
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
+				<version>4.11</version>
 				<scope>test</scope>
 			</dependency>
+			
+		    <dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>2.4.0</version>
+			</dependency>
+		
+			<dependency>
+			  <groupId>com.fasterxml.jackson.core</groupId>
+			  <artifactId>jackson-databind</artifactId>
+			  <version>2.4.0</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.178</version>
+			</dependency>
+			
+			<dependency>
+		    	<groupId>com.impaqgroup</groupId>
+		    	<artifactId>csv</artifactId>
+		    	<version>0.0.1-SNAPSHOT</version>
+    		</dependency>
+    		
+   		 	<dependency>
+			   	<groupId>com.impaqgroup</groupId>
+			   	<artifactId>contacts-repository</artifactId>
+			   	<version>0.0.1-SNAPSHOT</version>
+		    </dependency>
+			 
+			<dependency>
+			   	<groupId>com.impaqgroup</groupId>
+			   	<artifactId>contacts-service</artifactId>
+			   	<version>0.0.1-SNAPSHOT</version>
+		 	 </dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -71,7 +102,13 @@
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
+				<plugin>
+				  <groupId>org.eclipse.jetty</groupId>
+				  <artifactId>jetty-maven-plugin</artifactId>
+				  <version>9.2.1.v20140609</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
+	
 </project>

@@ -1,0 +1,24 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<listener>
+		<listener-class>contacts.DbPersonRepositoryInitializer</listener-class>
+	</listener>
+	<listener>
+		<listener-class>contacts.CsvPersonRepositoryInitializer</listener-class>
+	</listener>
+  <servlet>
+    <servlet-name>upload</servlet-name>
+    <servlet-class>contacts.PersonController</servlet-class>
+    <init-param>
+        <param-name>my.repo</param-name>
+        <param-value>DbPersonRepository</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>upload</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+</web-app>

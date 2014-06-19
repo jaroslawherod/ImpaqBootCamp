@@ -1,14 +1,14 @@
 package boot.camp.day1.hello;
 
-public class ParserException extends RuntimeException {
+public class WriterException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     private String errorName;
 
-    ParserException() {
+    WriterException() {
     }
 
-    ParserException(String errorName) {
+    WriterException(String errorName) {
 	this.errorName = errorName;
     }
 
